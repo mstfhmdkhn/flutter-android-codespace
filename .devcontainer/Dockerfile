@@ -25,6 +25,9 @@ ENV PATH="${GRADLE_HOME}/gradle-8.1/bin:${PATH}"
 RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 ENV PATH="/usr/local/flutter/bin:${PATH}"
 
+# Make flutter available system-wide for all users including vscode
+RUN echo 'export PATH="/usr/local/flutter/bin:$PATH"' >> /etc/profile.d/flutter.sh
+
 # Install Gradle
 RUN wget https://services.gradle.org/distributions/gradle-8.1-bin.zip && \
     unzip gradle-8.1-bin.zip -d /usr/local/gradle && \
